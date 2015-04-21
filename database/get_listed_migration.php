@@ -10,6 +10,7 @@ require '../db_connect.php';
 $query = 'DROP TABLE IF EXISTS posts;
 		CREATE TABLE posts (
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+		item VARCHAR(50) NOT NULL,
 		price VARCHAR(50) NOT NULL,
 		category VARCHAR(50) NOT NULL,
 		location VARCHAR(50) NOT NULL,

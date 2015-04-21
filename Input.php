@@ -79,7 +79,7 @@ class Input
 
         if(!is_numeric($keyVal))
         {   
-            throw new Exception("This ain't a number, bruh");
+            throw new Exception("$key should be a number");
         }
 
         if (((!is_int($max)) && (!is_null($max))) || ((!is_int($min))) && (!is_null($min)))
@@ -103,7 +103,7 @@ class Input
 
         if (!$date)
         {
-            throw new Exception("This ain't a date, bruh");
+            throw new Exception("$key should be date in format yyyy-mm-dd");
         } else 
         {
             return date_format($date, 'Y-m-d');
