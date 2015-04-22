@@ -1,9 +1,6 @@
 <?php
 
-define('DB_USER', 'codeup');
-define('DB_NAME', 'get_listed_db');
-define('DB_PASS', 'password');
-define('DB_HOST', '127.0.0.1');
+require_once "../bootstrap.php";
 
 Class Model {
 
