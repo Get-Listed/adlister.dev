@@ -10,17 +10,34 @@ if (!empty($_POST))
 	{
 		$nameAttempt = User::findByUsername($_POST['username']);
 		$emailAttempt = User::findByEmail($_POST['email']);
+
 		if (!$nameAttempt && !$emailAttempt)
 		{
 			$newUser = new User();
-			$newUser->username = Input::getString('username');
-			$newUser->email = Input::getString('email');
-			$newUser->password = Input::getString('enterPass');
+			
+			try {
+				$newUser->username = Input::getString('username');
+			} catch (Exception $e) {
+	    		$errors[] = $e->getMessage();
+			}
 
-			print_r($newUser);
+			try {
+			$newUser->email = Input::getString('email');
+			} catch (Exception $e) {
+	    		$errors[] = $e->getMessage();
+			}
+
+			try {
+			$newUser->password = Input::getString('enterPass');
+			} catch (Exception $e) {
+	    		$errors[] = $e->getMessage();
+    		}
+
 			$newUser->save();
-			var_dump($newUser);
-		}	
+
+		} else {
+			$errors[] = "Your username or email is not available";
+		}
 		
 	} else {
 		$errors[] = "Your passwords do not match";
@@ -47,7 +64,15 @@ if (!empty($_POST))
 	<input type='text' name='email' placeholder='Enter your Email'>
 	<input type='submit'>
 
+</div>
 
+
+<div id = "errorReturn">
+		<? foreach ($errors as $error):
+		 echo "$error" . PHP_EOL;?>
+		 <br> 
+	<? endforeach?>
+</div>
 
 
 </body>
