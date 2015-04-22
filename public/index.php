@@ -36,13 +36,13 @@ $showAds = Ad::all();
 <!-- // 5 // Ad entry form -->
 
 
-<?php include "../views/partials/post.index.php" ?>
+<?php include 'post.index.php' ?>
 
 
 <!-- // 6 // Add Display / Sort-->
 
 
-<?php include "../views/partials/ads.index.php" ?>
+<?php include 'ads.index.php' ?>
 
 
 </body>

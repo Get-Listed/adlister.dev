@@ -17,7 +17,7 @@ $query = 'DROP TABLE IF EXISTS posts;
 		image VARCHAR(50) NOT NULL,
 		contactInfo VARCHAR(50) NOT NULL,
 		description TEXT,
-		user_id INT UNSIGNED NOT NULL,
+		user_id INT UNSIGNED,
 		PRIMARY KEY (id)
 		)';
 
