@@ -12,7 +12,6 @@ require '../bootstrap.php';
 
 	
 $showAds = Ad::all();
-print_r($showAds);
 
 ?>
 

@@ -2,6 +2,8 @@
 
 require_once "../bootstrap.php";
 
+
+
 $errors = [];
 
  if (!empty($_POST))
@@ -61,6 +63,8 @@ $errors = [];
 	}
 
 ?>
+
+<!-- Ad form -->
 
 	<div id = "adEntry">
 		<form action ="/index.php" method = POST>
