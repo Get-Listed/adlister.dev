@@ -2,11 +2,36 @@
 
 require_once "../bootstrap.php";
 
-// 1 Create table for ads
+
+// 1 Drop any pre-existing tables
 
 
-$query = 'DROP TABLE IF EXISTS posts;
-		CREATE TABLE posts (
+$query = "DROP TABLE IF EXISTS posts";
+$dbc->exec($query);
+
+$query = "DROP TABLE IF EXISTS users";
+$dbc->exec($query);
+
+
+
+// 2 Create table for users
+
+$query = 	'CREATE TABLE users (
+			user_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+			username VARCHAR(25) NOT NULL,
+			password VARCHAR(25) NOT NULL,
+			email VARCHAR(50) NOT NULL,
+			PRIMARY KEY (user_id)
+			)';
+
+$dbc->exec($query);
+
+
+
+// 3 Create table for ads
+
+
+$query = 'CREATE TABLE posts (
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 		item VARCHAR(50) NOT NULL,
 		price VARCHAR(50) NOT NULL,
@@ -19,23 +44,12 @@ $query = 'DROP TABLE IF EXISTS posts;
 		description TEXT,
 		user_id INT UNSIGNED,
 		PRIMARY KEY (id),
-		FOREIGN KEY (user_id) REFERENCES users (user_id)
+		KEY user_id (user_id),
+		CONSTRAINT posts_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE 
 		)';
 
+		//KEY user_id (user_id),
 
 $dbc->exec($query);
 
 
-// 2 Create user table 
-
-
-$query2 = 	'DROP TABLE IF EXISTS users;
-			CREATE TABLE IF NOT EXISTS users (
-			user_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-			username VARCHAR(25) NOT NULL,
-			password VARCHAR(25) NOT NULL,
-			email VARCHAR(50) NOT NULL,
-			PRIMARY KEY (user_id)
-			)';
-
-$dbc->exec($query2);
