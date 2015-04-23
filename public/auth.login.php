@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 /*** begin our session ***/
@@ -66,6 +65,3 @@ if(isset( $_SESSION['user_id'] ))
 	    </div>
 	  </div>
 	</div>
-=======
-<?php
->>>>>>> 4e59dcc0972b95044c20055e2d9ebd8b8beff524
