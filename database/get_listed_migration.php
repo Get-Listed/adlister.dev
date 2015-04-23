@@ -18,7 +18,8 @@ $query = 'DROP TABLE IF EXISTS posts;
 		contactInfo VARCHAR(50) NOT NULL,
 		description TEXT,
 		user_id INT UNSIGNED,
-		PRIMARY KEY (id)
+		PRIMARY KEY (id),
+		FOREIGN KEY (user_id) REFERENCES users (user_id)
 		)';
 
 

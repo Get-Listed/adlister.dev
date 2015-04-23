@@ -50,11 +50,7 @@ if (!empty($_POST))
 
 
 
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+
 
 <div id="user create">
 	<form action "#" method="POST">
@@ -68,12 +64,9 @@ if (!empty($_POST))
 
 
 <div id = "errorReturn">
-		<? foreach ($errors as $error):
+		<? if isset($errors)
+		foreach ($errors as $error):
 		 echo "$error" . PHP_EOL;?>
 		 <br> 
-	<? endforeach?>
-</div>
+	<? endforeach ?>
 
-
-</body>
-</html>

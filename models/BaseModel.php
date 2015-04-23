@@ -104,6 +104,8 @@ Class Model {
     /*
      * Find a record based on an id
      */
+
+    
     public static function find($id)
     {
         // Get connection to the database

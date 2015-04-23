@@ -36,7 +36,7 @@ $showAds = Ad::all();
 <!-- // 5 // Ad entry form -->
 
 
-<?php include 'post.index.php' ?>
+<?php include 'ads.create.php' ?>
 
 
 <!-- // 6 // Add Display / Sort-->
