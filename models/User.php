@@ -42,7 +42,7 @@ class User extends Model
 		$stmt = self::$dbc->prepare($query);
 	
 		$stmt->bindValue(':password', $this->attributes['password'], PDO::PARAM_STR);
-		$stst->bindValue('user_id', ($_SESSION["LOGGED_IN_USER_ID"], PDO::PARAM_STR);
+		$stst->bindValue('user_id', ($_SESSION["LOGGED_IN_USER_ID"]), PDO::PARAM_STR);
 	
 		$stmt->execute();
 

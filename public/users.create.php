@@ -64,7 +64,7 @@ if (!empty($_POST))
 
 
 <div id = "errorReturn">
-		<? if isset($errors)
+		<? if (!empty($errors))
 		foreach ($errors as $error):
 		 echo "$error" . PHP_EOL;?>
 		 <br> 

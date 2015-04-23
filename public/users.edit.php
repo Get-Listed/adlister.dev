@@ -63,7 +63,7 @@ if isset($_SESSION['user_id'])
 <!-- // ** Return any errors if exist -->
 
 <div id = "errorReturn">
-		<? if isset($errors)
+		<? if (!empty($errors))
 		foreach ($errors as $error):
 		 echo "$error" . PHP_EOL;?>
 		 <br> 
