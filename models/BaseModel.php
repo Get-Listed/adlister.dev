@@ -20,7 +20,7 @@ Class Model {
     /*
      * Connect to the DB
      */
-    private static function dbConnect()
+    protected static function dbConnect()
     {
         if (!self::$dbc)
         {
@@ -104,6 +104,8 @@ Class Model {
     /*
      * Find a record based on an id
      */
+
+    
     public static function find($id)
     {
         // Get connection to the database
@@ -112,6 +114,11 @@ Class Model {
         // @TODO: Create select statement using prepared statements
 
         // @TODO: Store the resultset in a variable named $result
+
+        $stmt = self::$dbc->prepare("SELECT * FROM " . static::$table . " WHERE id = :id");
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // The following code will set the attributes on the calling object based on the result variable's contents
 

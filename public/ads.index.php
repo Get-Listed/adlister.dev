@@ -5,6 +5,7 @@ require_once "../bootstrap.php";
 $showAds = Ad::all();
 
 
+
 ?>
 
 	<div id = "adDisplay">
