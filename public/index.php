@@ -1,53 +1,4 @@
-<?php
 
-// 1 // Begin User session
-
-session_start();
-
-$sessionId = session_id();
-
-
-var_dump($_POST);
-var_dump($_GET);
-
-// 2 // Requiring boostrap for necessary models
-
-require '../bootstrap.php';
-	
-
-// 3 // Display all items from database
-
-	
-$showAds = Ad::all();
-
-?>
-
-
-<!-- // 4 //  Begin site HTML -->
-
-
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-
-
-<!-- // 5 // Ad entry form -->
-
-
-<?php include 'ads.create.php' ?>
-
-
-<!-- // 6 // Add Display / Sort-->
-
-
-<?php include 'ads.index.php' ?>
-
-
-</body>
-</html>
-=======
 <!DOCTYPE HTML>
 <?php 
 require '../bootstrap.php';
@@ -93,24 +44,7 @@ require '../db_connect.php';
 
 					<?php include 'auth.login.php'; ?>
 
-					<!-- Sign Up Modal -->
-					<div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-					      </div>
-					      <div class="modal-body">
-					        ...
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					        <button type="button" class="btn btn-primary">Save changes</button>
-					      </div>
-					    </div>
-					  </div>
-					</div>
+					<?php include 'users.create.php' ?>
 				<!-- One -->
 					<section id="one" class="wrapper style1 special">
 						<div class="inner">
@@ -197,4 +131,3 @@ require '../db_connect.php';
 	</body>
 </html>
 
->>>>>>> 978af43f10c0e94af279c2008ee4523fd0b39720
