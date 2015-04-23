@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE HTML>
 <?php 
 require '../bootstrap.php';
@@ -146,3 +147,54 @@ require '../db_connect.php';
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	</body>
 </html>
+=======
+<?php
+
+// 1 // Begin User session
+
+session_start();
+
+$sessionId = session_id();
+
+
+var_dump($_POST);
+var_dump($_GET);
+
+// 2 // Requiring boostrap for necessary models
+
+require '../bootstrap.php';
+	
+
+// 3 // Display all items from database
+
+	
+$showAds = Ad::all();
+
+?>
+
+
+<!-- // 4 //  Begin site HTML -->
+
+
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<!-- // 5 // Ad entry form -->
+
+
+<?php include "../views/partials/post.index.php" ?>
+
+
+<!-- // 6 // Add Display / Sort-->
+
+
+<?php include "../views/partials/ads.index.php" ?>
+
+
+</body>
+</html>
+>>>>>>> 4e59dcc0972b95044c20055e2d9ebd8b8beff524
