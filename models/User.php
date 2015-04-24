@@ -13,6 +13,18 @@ class User extends Model
 
 
 
+	public function save()
+    {
+        if (!empty($this->attributes['user_id']))
+
+        {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+
+    }
+
 	protected function insert()
 	{
 		$query = '
@@ -34,15 +46,15 @@ class User extends Model
 		protected function update()
 	{
 		$query = '
-		UPDATE users (password)
-		SET (:username, :password, :email)
-		WHERE user_id = :loggedInId
+		UPDATE users
+		SET password = :password
+		WHERE user_id = :user_id
 		';
 	
 		$stmt = self::$dbc->prepare($query);
 	
 		$stmt->bindValue(':password', $this->attributes['password'], PDO::PARAM_STR);
-		$stst->bindValue('user_id', ($_SESSION["LOGGED_IN_USER_ID"]), PDO::PARAM_STR);
+		$stmt->bindValue('user_id', ($_SESSION['user_id']), PDO::PARAM_STR);
 	
 		$stmt->execute();
 
@@ -51,6 +63,30 @@ class User extends Model
 	// ** Searches by username and returns user id if exists;
 	// Allows Create User attempt to verify if username already exists
 
+	public static function findByUserId($user_id)
+    {
+        // Get connection to the database
+        self::dbConnect();
+
+        // @TODO: Create select statement using prepared statements
+
+        // @TODO: Store the resultset in a variable named $result
+
+        $stmt = self::$dbc->prepare("SELECT * FROM " . static::$table . " WHERE user_id = :user_id");
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // The following code will set the attributes on the calling object based on the result variable's contents
+
+        $instance = null;
+        if ($result)
+        {
+            $instance = new static;
+            $instance->attributes = $result;
+        }
+        return $instance;
+    }
 
 	public static function findByUsername($nameAttempt)
 	{

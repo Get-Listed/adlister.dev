@@ -2,14 +2,21 @@
 
 require_once "../bootstrap.php";
 
+session_start();
 
+//** Ad Submit Logic
 
 $errors = [];
 
- if (!empty($_POST))
+ if (!isset($_POST))
  	{
  		$newAd = new Ad();
 
+ 		try {
+ 			$newAd->user_id =Input::$_SESSION('user_id');
+ 		} catch (Exception $e) {
+	    	$errors[] = $e->getMessage();
+		}
  		try {
  			$newAd->item =Input::getString('item');
  		} catch (Exception $e) {
@@ -58,7 +65,7 @@ $errors = [];
 
 		if (empty($errors))
 		{
- 			$newAd->save();
+ 			$newAd->insert();
 		}
 	}
 
@@ -67,7 +74,7 @@ $errors = [];
 <!-- Ad form -->
 
 	<div id = "adEntry">
-		<form action ="/index.php" method = POST>
+		<form action ="#" method = POST>
 			Item<br>
 			<input type = 'text' name = 'item'><br>
 			Price<br>
