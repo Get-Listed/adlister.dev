@@ -53,7 +53,7 @@ if (!empty($_POST))
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
 	        <br>
-	        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	        <h4 class="modal-title" id="myModalLabel">Get Started With Get Listed</h4>
 	      </div>
 	      <div class="modal-body">
 	        	<form action "login.php" method="POST">
@@ -61,7 +61,7 @@ if (!empty($_POST))
 					<br>
 					<input type='text' name='enterPass' placeholder='Select a Password'>
 					<br>
-					<input type='text' name='confirmPass' placeholder='Confirm a Password'>
+					<input type='text' name='confirmPass' placeholder='Confirm your Password'>
 					<br>
 					<input type='text' name='email' placeholder='Enter your Email'>
 	      </div>
