@@ -56,6 +56,7 @@ require '../db_connect.php';
 							<ul class="icons major">
 								<li><span class="icon fa-diamond major style1"><span class="label">Lorem</span></span></li>
 								<li><span class="icon fa-heart-o major style2"><span class="label">Ipsum</span></span></li>
+								<li><span class="icon fa-usd major style3"><span class="label">Ipsum</span></span></li>
 							</ul>
 						</div>
 					</section>
@@ -106,10 +107,9 @@ require '../db_connect.php';
 				<!-- Footer -->
 					<footer id="footer">
 						<ul class="icons">
-							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="https://github.com/Get-Listed" class="icon fa-github"><span class="label">Github</span></a></li>						
+							<li><a href="https://www.apple.com/" class="icon fa-apple"><span class="label">Apple</span></a></li>
+							<li><a href="http://www.html5rocks.com/en/" class="icon fa-html5"><span class="label">Html5</span></a></li>
 							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
 						<ul class="copyright">
