@@ -56,7 +56,6 @@ require '../db_connect.php';
 							<ul class="icons major">
 								<li><span class="icon fa-diamond major style1"><span class="label">Lorem</span></span></li>
 								<li><span class="icon fa-heart-o major style2"><span class="label">Ipsum</span></span></li>
-								<li><span class="icon fa-code major style3"><span class="label">Dolor</span></span></li>
 							</ul>
 						</div>
 					</section>
@@ -94,11 +93,11 @@ require '../db_connect.php';
 					<section id="cta" class="wrapper style4">
 						<div class="inner">
 							<header>
-								<h2>Arcue ut vel commodo</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
+								<h2>The Development Team</h2>
+								<p>This site was developed by J.D. and Max who are students at Codeup.</p>
 							</header>
 							<ul class="actions vertical">
-								<li><a href="#" class="button fit special">Activate</a></li>
+								<li><a href="#" class="button fit special">Their Work</a></li>
 								<li><a href="#" class="button fit">Learn More</a></li>
 							</ul>
 						</div>
@@ -114,7 +113,7 @@ require '../db_connect.php';
 							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
 						<ul class="copyright">
-							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							<li>&copy; 2015</li><li>Development: <a href="#">Max the Monkey and J.D. Designs</a></li>
 						</ul>
 					</footer>
 
