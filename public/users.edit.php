@@ -74,6 +74,7 @@ if (!empty($_GET))
 
 ?>
 
+<<<<<<< HEAD
 <html>
 <head>
 	<title></title>
@@ -141,4 +142,94 @@ if (!empty($_GET))
 </html>
 
 </body>
+=======
+<?php include '../views/partials/dash-head.php'; ?>
+
+  <body>
+
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="users.edit.php" class="logo"><b>Change Your Password</b></a>
+
+           <?php include '../views/partials/dash-top-nav.php'; ?>
+        </header>
+      <!--header end-->
+      
+      <?php include '../views/partials/dash-nav.php'; ?>
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+
+
+
+
+
+
+
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper site-min-height">
+
+			           <!-- BASIC FORM ELELEMNTS -->
+            <div class="row mt">
+              <div class="col-lg-12">
+                  <div class="form-panel" id="changePass">
+                      <h4 class="mb"><i class="fa fa-angle-right"></i>Change Your Password</h4>
+                      <form class="form-horizontal style-form" method="POST" action="ads.edit.php">
+
+
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Old Password</label>
+                              <div class="col-sm-10">
+                                  <input type="text"  class="form-control" name='oldPass' placeholder='Enter current Password'>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">New Password</label>
+                              <div class="col-sm-10">
+                                  <input type="text"  class="form-control" name='enterPass' placeholder='Select a New Password'>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Confirm Password</label>
+                              <div class="col-sm-10">
+                                  <input type="text"  class="form-control" name='confirmPass' placeholder='Confirm  New Password'>
+                              </div>
+                          </div>
+
+                          <div class="form-group">     
+                              <div class="col-sm-10">
+                                  <button type="submit" class="btn btn-theme">Update Password</button>
+                              </div>
+                          </div>                                                                                                     
+                      </form>
+                      <div id = "errorReturn">
+                          <? if (!empty($errors))
+                          foreach ($errors as $error):
+                           echo "$error" . PHP_EOL;?>
+                           <br> 
+                          <? endforeach ?>
+                      </div>
+                  </div>
+              </div><!-- col-lg-12-->       
+            </div><!-- /row -->
+
+		</section><! --/wrapper -->
+      </section><!-- /MAIN CONTENT -->
+
+      <!--main content end-->
+<?php include '../views/partials/dash-footer.php'; ?>
+
+  </body>
+>>>>>>> 38f103cd8b1a5fe21c947b802af31b136baa9252
 </html>

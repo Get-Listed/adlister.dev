@@ -4,8 +4,11 @@ require_once "../bootstrap.php";
 
 session_start();
 
+<<<<<<< HEAD
 // ** Commented faux session variables for debugging
 $_SESSION['user_id'] = "4";
+=======
+>>>>>>> 38f103cd8b1a5fe21c947b802af31b136baa9252
 
 //** Create a variable to capture all ads for given user id
 
@@ -16,6 +19,7 @@ $errors = [];
 //** When new input is submitted, pass the current ad id to submit with the 
 // updated values, then call update directly
 
+<<<<<<< HEAD
  if (Input::has('edit'))
 {
 	
@@ -87,10 +91,74 @@ $errors = [];
 		header('location: users.edit.php');
 		die();
 	}
+=======
+ if (!empty($_POST))
+  {
+    $newAd = new Ad();
+    $newAd->id = $_SESSION['editAd'];
+
+    try {
+      $newAd->item =Input::getString('item');
+    } catch (Exception $e) {
+        $errors[] = $e->getMessage();
+    }
+    try {
+    $newAd->price =Input::getString('price');
+    } catch (Exception $e) {
+        $errors[] = $e->getMessage();
+    }
+    try {
+    $newAd->location =Input::getString('location');
+    } catch (Exception $e) {
+        $errors[] = $e->getMessage();
+    }
+    try {
+    $newAd->date =Input::getString('date');
+    } catch (Exception $e) {
+        $errors[] = $e->getMessage();
+    }
+    try {
+    $newAd->category =Input::getString('category');
+    } catch (Exception $e) {
+        $errors[] = $e->getMessage();
+    }
+    try {
+    $newAd->duration =Input::getString('duration');
+    } catch (Exception $e) {
+        $errors[] = $e->getMessage();
+    }
+    try {
+    $newAd->image =Input::getString('image');
+    } catch (Exception $e) {
+        $errors[] = $e->getMessage();
+    }
+    try {
+    $newAd->contactInfo =Input::getString('contactInfo');
+    } catch (Exception $e) {
+        $errors[] = $e->getMessage();
+    }
+    try {
+    $newAd->description =Input::getString('description');
+    } catch (Exception $e) {
+        $errors[] = $e->getMessage();
+    }
+
+    if (empty($errors))
+    {
+      $newAd->update();
+      //** Upon completing updates, reload page to display new values
+      header("Location: #");
+      die();
+    }
+
+
+  }
+>>>>>>> 38f103cd8b1a5fe21c947b802af31b136baa9252
 
 
 
 ?>
+<<<<<<< HEAD
 
 
 <html>

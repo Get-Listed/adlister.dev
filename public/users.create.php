@@ -1,8 +1,4 @@
 <?php
-
-include '../bootstrap.php';
-
-
 if (!empty($_POST))
 {
 	$errors = [];
@@ -55,21 +51,33 @@ if (!empty($_POST))
 
 
 ?>
-
-
-
-<!-- //** Create User form -->
-
-<div id="user create">Sign Up
-	<form action "#" method="POST">
-	<input type='text' name='username' placeholder='Select a Username'>
-	<input type='text' name='enterPass' placeholder='Select a Password'>
-	<input type='text' name='confirmPass' placeholder='Cofirm a Password'>
-	<input type='text' name='email' placeholder='Enter your Email'>
-	<input type='submit'>
-
-</div>
-
+	<!-- Sign Up Modal -->
+	<div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+	        <br>
+	        <h4 class="modal-title" id="myModalLabel">Get Started With Get Listed</h4>
+	      </div>
+	      <div class="modal-body">
+	        	<form action "login.php" method="POST">
+					<input type='text' name='username' placeholder='Select a Username'>
+					<br>
+					<input type='text' name='enterPass' placeholder='Select a Password'>
+					<br>
+					<input type='text' name='confirmPass' placeholder='Confirm your Password'>
+					<br>
+					<input type='text' name='email' placeholder='Enter your Email'>
+	      </div>
+	      <div class="modal-footer">
+	        		<input type="submit" class="button special">
+	        	</form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+		
 <!--  //** Echo errors -->
 
 <div id = "errorReturn">
