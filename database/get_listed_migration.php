@@ -3,7 +3,7 @@
 require_once "../bootstrap.php";
 
 
-// 1 Drop any pre-existing tables
+//** Drop any pre-existing tables
 
 
 $query = "DROP TABLE IF EXISTS posts";
@@ -14,7 +14,7 @@ $dbc->exec($query);
 
 
 
-// 2 Create table for users
+//** Create table for users
 
 $query = 	'CREATE TABLE users (
 			user_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -28,7 +28,7 @@ $dbc->exec($query);
 
 
 
-// 3 Create table for ads
+//** Create table for ads
 
 
 $query = 'CREATE TABLE posts (

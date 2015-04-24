@@ -66,13 +66,83 @@ if (!empty($_GET))
 
 	{
 		var_dump($_GET);
-		$_SESSION['editAd'] = $_GET;
+		$_SESSION['editAd'] = Ad::find($_GET['id']);
 		header("Location: ads.edit.php");
+		var_dump($_SESSION['editAd']);
 		die();
 	}
 
 ?>
 
+<<<<<<< HEAD
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<!-- //** Form displaying current user ads for editing -->
+
+	<div id = "adDisplay">Edit My Ads
+		<table>
+			<thead>
+				<th>Item</th>
+				<th>Price</th>
+				<th>Date</th>
+				<th>Location</th>
+				<th>Category</th>
+				<th>Duration</th>
+				<th>Image</th>
+				<th>Contact Info</th>
+				<th>Description</th>
+			</thead>
+			<tbody>
+				<? foreach($showAds as $ad): ?>
+				<tr>
+
+				<td> <?= htmlspecialchars(strip_tags($ad['item'])); ?></td>
+				<td> <?= htmlspecialchars(strip_tags($ad['price'])); ?></td>
+				<td> <?= htmlspecialchars(strip_tags($ad['date'])); ?></td>
+				<td> <?= htmlspecialchars(strip_tags($ad['location'])); ?></td>
+				<td> <?= htmlspecialchars(strip_tags($ad['category'])); ?></td>
+				<td> <?= htmlspecialchars(strip_tags($ad['duration'])); ?> </td>
+				<td> <?= htmlspecialchars(strip_tags($ad['image'])); ?></td>
+				<td> <?= htmlspecialchars(strip_tags($ad['contactInfo'])); ?></td>
+				<td> <?= htmlspecialchars(strip_tags($ad['description'])); ?></td>
+				<td> <form action ='#' method = 'GET'><button name='id' value='<?=($ad['id'])?>' type="submit"></button>Edit</form></td>
+				</tr>
+				<?endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+
+
+<!-- //** Form for changing password -->
+
+<div id="changePass">Change Password
+	<form action "#" method="POST">
+	<input type='text' name='oldPass' placeholder='Enter current Password'>
+	<input type='text' name='enterPass' placeholder='Select a New Password'>
+	<input type='text' name='confirmPass' placeholder='Confirm  New Password'>
+	<input type='submit'>
+</div>
+
+<!-- //** Return any errors if exist -->
+
+<div id = "errorReturn">
+		<? if (!empty($errors))
+		foreach ($errors as $error):
+		 echo "$error" . PHP_EOL;?>
+		 <br> 
+	<? endforeach ?>
+</div>
+
+</body>
+</html>
+
+</body>
+=======
 <?php include '../views/partials/dash-head.php'; ?>
 
   <body>
@@ -161,4 +231,5 @@ if (!empty($_GET))
 <?php include '../views/partials/dash-footer.php'; ?>
 
   </body>
+>>>>>>> 38f103cd8b1a5fe21c947b802af31b136baa9252
 </html>
