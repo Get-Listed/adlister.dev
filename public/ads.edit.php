@@ -6,79 +6,89 @@ session_start();
 
 // ** Commented faux session variables for debugging
 $_SESSION['user_id'] = "4";
-$_SESSION['editAd'] = "2";
-
 
 //** Create a variable to capture all ads for given user id
 
-$showAd = Ad::find($_SESSION['editAd']);
+$showAd = $_SESSION['editAd'];
 
 $errors = [];
 
 //** When new input is submitted, pass the current ad id to submit with the 
 // updated values, then call update directly
 
- if (!empty($_POST))
- 	{
- 		$newAd = new Ad();
- 		$newAd->id = $_SESSION['editAd'];
+ if (Input::has('edit'))
+{
+	
 
- 		try {
- 			$newAd->item =Input::getString('item');
- 		} catch (Exception $e) {
-	    	$errors[] = $e->getMessage();
-		}
-		try {
- 		$newAd->price =Input::getString('price');
- 		} catch (Exception $e) {
-	    	$errors[] = $e->getMessage();
-		}
- 		try {
- 		$newAd->location =Input::getString('location');
- 		} catch (Exception $e) {
-	    	$errors[] = $e->getMessage();
-		}
- 		try {
- 		$newAd->date =Input::getString('date');
- 		} catch (Exception $e) {
-	    	$errors[] = $e->getMessage();
-		}
- 		try {
- 		$newAd->category =Input::getString('category');
- 		} catch (Exception $e) {
-	    	$errors[] = $e->getMessage();
-		}
- 		try {
- 		$newAd->duration =Input::getString('duration');
- 		} catch (Exception $e) {
-	    	$errors[] = $e->getMessage();
-		}
- 		try {
- 		$newAd->image =Input::getString('image');
- 		} catch (Exception $e) {
-	    	$errors[] = $e->getMessage();
-		}
- 		try {
- 		$newAd->contactInfo =Input::getString('contactInfo');
- 		} catch (Exception $e) {
-	    	$errors[] = $e->getMessage();
-		}
- 		try {
- 		$newAd->description =Input::getString('description');
- 		} catch (Exception $e) {
-	    	$errors[] = $e->getMessage();
-		}
+ 		
+ 			$newAd = new Ad();
+ 			$newAd->id = $_SESSION['editAd']->id;
+	
+ 			try {
+ 				$newAd->item =Input::getString('item');
+ 			} catch (Exception $e) {
+		    	$errors[] = $e->getMessage();
+			}
+			try {
+ 			$newAd->price =Input::getString('price');
+ 			} catch (Exception $e) {
+		    	$errors[] = $e->getMessage();
+			}
+ 			try {
+ 			$newAd->location =Input::getString('location');
+ 			} catch (Exception $e) {
+		    	$errors[] = $e->getMessage();
+			}
+ 			try {
+ 			$newAd->date =Input::getString('date');
+ 			} catch (Exception $e) {
+		    	$errors[] = $e->getMessage();
+			}
+ 			try {
+ 			$newAd->category =Input::getString('category');
+ 			} catch (Exception $e) {
+		    	$errors[] = $e->getMessage();
+			}
+ 			try {
+ 			$newAd->duration =Input::getString('duration');
+ 			} catch (Exception $e) {
+		    	$errors[] = $e->getMessage();
+			}
+ 			try {
+ 			$newAd->image =Input::getString('image');
+ 			} catch (Exception $e) {
+		    	$errors[] = $e->getMessage();
+			}
+ 			try {
+ 			$newAd->contactInfo =Input::getString('contactInfo');
+ 			} catch (Exception $e) {
+		    	$errors[] = $e->getMessage();
+			}
+ 			try {
+ 			$newAd->description =Input::getString('description');
+ 			} catch (Exception $e) {
+		    	$errors[] = $e->getMessage();
+			}
+	
+			if (empty($errors))
+			{
+ 				$newAd->update();
+ 				//** Upon completing updates, reload page to display new values
+				header("Location: #");
+				die();
+			}
 
-		if (empty($errors))
-		{
- 			$newAd->update();
- 			//** Upon completing updates, reload page to display new values
-			header("Location: #");
-			die();
-		}
-
-
+		
 	}
+
+	if(Input::has('delete'))
+	{
+		Ad::deleteAd($showAd->id);
+		header('location: users.edit.php');
+		die();
+	}
+
+
 
 ?>
 
@@ -147,15 +157,21 @@ $errors = [];
 			<input type = 'text' name = 'contactInfo' value="<?=$showAd->contactInfo?>"><br>
 			Description<br>
 			<input type = 'text' name = 'description' value="<?=$showAd->description?>"><br>
-			<input type= 'submit'>
+			<input hidden name = "edit" value="true">
+			<input type= 'submit'> 
+		</form>
+		<form method="POST">
+			<input hidden name = 'delete' value = "<?= $showAd->id ?>">
+			<input type='submit' value="Delete Ad">
 		</form>
 	</div>
 <div id = "errorReturn">
-		<? if (!empty($errors))
-		foreach ($errors as $error):
-		 echo "$error" . PHP_EOL;?>
+		<? if (!empty($errors)): ?>
+		<? foreach ($errors as $error): 
+		 echo "$error" . PHP_EOL; ?>
 		 <br> 
-	<? endforeach ?>
+	<? endforeach; endif; ?>
+
 </div>
 
 </body>

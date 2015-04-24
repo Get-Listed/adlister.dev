@@ -66,8 +66,9 @@ if (!empty($_GET))
 
 	{
 		var_dump($_GET);
-		$_SESSION['editAd'] = $_GET;
+		$_SESSION['editAd'] = Ad::find($_GET['id']);
 		header("Location: ads.edit.php");
+		var_dump($_SESSION['editAd']);
 		die();
 	}
 
@@ -108,7 +109,7 @@ if (!empty($_GET))
 				<td> <?= htmlspecialchars(strip_tags($ad['image'])); ?></td>
 				<td> <?= htmlspecialchars(strip_tags($ad['contactInfo'])); ?></td>
 				<td> <?= htmlspecialchars(strip_tags($ad['description'])); ?></td>
-				<td> <form action ='#' method = 'GET'><button name='<?=($ad['id'])?>' value="value" type="submit"></button>Edit</form></td>
+				<td> <form action ='#' method = 'GET'><button name='id' value='<?=($ad['id'])?>' type="submit"></button>Edit</form></td>
 				</tr>
 				<?endforeach; ?>
 			</tbody>
