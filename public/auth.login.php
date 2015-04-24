@@ -1,55 +1,7 @@
 <?php
 
-require_once "Log.php";
-
-
-
-class Auth
-{	
-	public static $password = '$2y$10$SLjwBwdOVvnMgWxvTI4Gb.YVcmDlPTpQystHMO2Kfyi/DS8rgA0Fm';
-
-	
-	public static function attempt($username, $password)
-	{
-		if ($username == "guest" && $password == static::password)
-		{
-		$_SESSION["LOGGED_IN_USER"] = $username;
-		logInfo("User $username logged in.");
-		// exit();
-	}
-
-	
-	public static function check()
-	{
- 		if ($_SESSION["LOGGED_IN_USER"])
- 		{
- 			return true;
- 		}
-	}
-
-	
-	public static function user()
-	{
-		 return $_SESSION["LOGGED_IN_USER"];
-	}
-
-	
-	public static function logout()
-	{
-
-	}
-
-}
-=======
 /*** begin our session ***/
 session_start();
-
-
-if(isset( $_SESSION['user_id'] ))
-{
-	$user = print_r($_SESSION['user_id']);
-    $message = "$user is already logged in";
-}
 
     /*** if we are here the data is valid and we can insert it into database ***/
     if (!empty(Input::get('username')) && !empty(Input::get('password'))) {
@@ -74,7 +26,8 @@ if(isset( $_SESSION['user_id'] ))
 
                 /*** tell the user we are logged in ***/
                 $message = 'You are now logged in';
-                
+                header("Location: users.edit.php");
+                die();
         }
     }
 ?>
@@ -83,21 +36,16 @@ if(isset( $_SESSION['user_id'] ))
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+	        <br>
+	        <h4 class="modal-title" id="myModalLabel">Sign In</h4>
 	      </div>
 	      <div class="modal-body">
 	  
-			<form method="POST" action="index.php">
+			<form method="POST">
 		        <input type="text" name="username" placeholder="Username">
 		        <br>
-		        <input type="password" name="password"  placeholder="Password">
-  			<?php echo $message; ?>
-  			<?php if (!empty(Input::get('username'))): ?>
-  			<?php print_r($output); ?>	
-  			<?php endif ?>
-  			
-	   
+		        <input type="password" name="password"  placeholder="Password">  	  				   
 	      </div>
 	      <div class="modal-footer">
 	       		<input type="submit" class="button special">
@@ -106,4 +54,3 @@ if(isset( $_SESSION['user_id'] ))
 	    </div>
 	  </div>
 	</div>
->>>>>>> 978af43f10c0e94af279c2008ee4523fd0b39720
