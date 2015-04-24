@@ -2,46 +2,54 @@
 
 include '../bootstrap.php';
 
+
 if (!empty($_POST))
 {
 	$errors = [];
-
-	if ($_POST['enterPass'] == $_POST['confirmPass'])	
+	if (!empty($_POST['username']) && !empty($_POST['enterPass']) && !empty($_POST['confirmPass']) && !empty($_POST['email']))
 	{
-		$nameAttempt = User::findByUsername($_POST['username']);
-		$emailAttempt = User::findByEmail($_POST['email']);
-
-		if (!$nameAttempt && !$emailAttempt)
+		if ($_POST['enterPass'] == $_POST['confirmPass'])	
 		{
-			$newUser = new User();
+			$nameAttempt = User::findByUsername($_POST['username']);
+			$emailAttempt = User::findByEmail($_POST['email']);
+	
+			if (!$nameAttempt && !$emailAttempt)
+			{
+				$newUser = new User();
+				
+				try {
+					$newUser->username = Input::getString('username');
+				} catch (Exception $e) {
+		    		$errors[] = $e->getMessage();
+				}
+	
+				try {
+				$newUser->email = Input::getString('email');
+				} catch (Exception $e) {
+		    		$errors[] = $e->getMessage();
+				}
+	
+				try {
+				$newUser->password = Input::getString('enterPass');
+				} catch (Exception $e) {
+		    		$errors[] = $e->getMessage();
+    			}
+	
+				$newUser->save();
+				header("Location:auth.login.php");
+				die();
+	
+			} else {
+				$errors[] = "Your username or email is not available";
+			}
 			
-			try {
-				$newUser->username = Input::getString('username');
-			} catch (Exception $e) {
-	    		$errors[] = $e->getMessage();
-			}
-
-			try {
-			$newUser->email = Input::getString('email');
-			} catch (Exception $e) {
-	    		$errors[] = $e->getMessage();
-			}
-
-			try {
-			$newUser->password = Input::getString('enterPass');
-			} catch (Exception $e) {
-	    		$errors[] = $e->getMessage();
-    		}
-
-			$newUser->save();
-
 		} else {
-			$errors[] = "Your username or email is not available";
+			$errors[] = "Your passwords do not match";
 		}
-		
 	} else {
-		$errors[] = "Your passwords do not match";
+		$errors[] = "All fields required";
 	}
+
 }
 
 
@@ -50,9 +58,9 @@ if (!empty($_POST))
 
 
 
+<!-- //** Create User form -->
 
-
-<div id="user create">
+<div id="user create">Sign Up
 	<form action "#" method="POST">
 	<input type='text' name='username' placeholder='Select a Username'>
 	<input type='text' name='enterPass' placeholder='Select a Password'>
@@ -62,6 +70,7 @@ if (!empty($_POST))
 
 </div>
 
+<!--  //** Echo errors -->
 
 <div id = "errorReturn">
 		<? if (!empty($errors))
