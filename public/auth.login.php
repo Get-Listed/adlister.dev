@@ -26,7 +26,8 @@ session_start();
 
                 /*** tell the user we are logged in ***/
                 $message = 'You are now logged in';
-                
+                header("Location: users.edit.php");
+                die();
         }
     }
 ?>
@@ -41,7 +42,7 @@ session_start();
 	      </div>
 	      <div class="modal-body">
 	  
-			<form method="POST" action="index.php">
+			<form method="POST">
 		        <input type="text" name="username" placeholder="Username">
 		        <br>
 		        <input type="password" name="password"  placeholder="Password">  	  				   
