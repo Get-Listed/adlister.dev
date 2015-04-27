@@ -22,6 +22,6 @@
 				<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 			</ul>
 			<ul class="copyright">
-				<li>&copy; 2015</li><li>Development: <a href="#">Max the Monkey and J.D. Designs</a></li>
+				<li>&copy; 2015</li><li>Development: <a href="#">Max and J.D. Design and Development</a></li>
 			</ul>
 		</footer>

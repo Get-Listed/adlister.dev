@@ -1,14 +1,12 @@
 <?php
 
-include '../bootstrap.php';
+require_once '../bootstrap.php';
 
 
 session_start();
 
 
 //** Commented faux session variable for debugging
-$_SESSION['user_id'] = "4";
-
 
 //** Edit Password Logic
 
@@ -30,7 +28,7 @@ if (isset($_SESSION['user_id']))
 			{
 				//** Create a User object from array based on user_id passed in session
 				$userEdit= User::findByUserId($_SESSION['user_id']);
-				var_dump($userEdit);
+
 			
 				//** Verify that current password matches logged in user's password
 				if ($userEdit->password == $_POST['oldPass'])
@@ -65,7 +63,7 @@ $showAds = Ad::allUserAds($_SESSION['user_id']);
 if (!empty($_GET))
 
 	{
-		var_dump($_GET);
+		
 		$_SESSION['editAd'] = Ad::find($_GET['id']);
 		header("Location: ads.edit.php");
 		var_dump($_SESSION['editAd']);
@@ -74,75 +72,7 @@ if (!empty($_GET))
 
 ?>
 
-<<<<<<< HEAD
-<html>
-<head>
-	<title></title>
-</head>
-<body>
 
-
-<!-- //** Form displaying current user ads for editing -->
-
-	<div id = "adDisplay">Edit My Ads
-		<table>
-			<thead>
-				<th>Item</th>
-				<th>Price</th>
-				<th>Date</th>
-				<th>Location</th>
-				<th>Category</th>
-				<th>Duration</th>
-				<th>Image</th>
-				<th>Contact Info</th>
-				<th>Description</th>
-			</thead>
-			<tbody>
-				<? foreach($showAds as $ad): ?>
-				<tr>
-
-				<td> <?= htmlspecialchars(strip_tags($ad['item'])); ?></td>
-				<td> <?= htmlspecialchars(strip_tags($ad['price'])); ?></td>
-				<td> <?= htmlspecialchars(strip_tags($ad['date'])); ?></td>
-				<td> <?= htmlspecialchars(strip_tags($ad['location'])); ?></td>
-				<td> <?= htmlspecialchars(strip_tags($ad['category'])); ?></td>
-				<td> <?= htmlspecialchars(strip_tags($ad['duration'])); ?> </td>
-				<td> <?= htmlspecialchars(strip_tags($ad['image'])); ?></td>
-				<td> <?= htmlspecialchars(strip_tags($ad['contactInfo'])); ?></td>
-				<td> <?= htmlspecialchars(strip_tags($ad['description'])); ?></td>
-				<td> <form action ='#' method = 'GET'><button name='id' value='<?=($ad['id'])?>' type="submit"></button>Edit</form></td>
-				</tr>
-				<?endforeach; ?>
-			</tbody>
-		</table>
-	</div>
-
-
-<!-- //** Form for changing password -->
-
-<div id="changePass">Change Password
-	<form action "#" method="POST">
-	<input type='text' name='oldPass' placeholder='Enter current Password'>
-	<input type='text' name='enterPass' placeholder='Select a New Password'>
-	<input type='text' name='confirmPass' placeholder='Confirm  New Password'>
-	<input type='submit'>
-</div>
-
-<!-- //** Return any errors if exist -->
-
-<div id = "errorReturn">
-		<? if (!empty($errors))
-		foreach ($errors as $error):
-		 echo "$error" . PHP_EOL;?>
-		 <br> 
-	<? endforeach ?>
-</div>
-
-</body>
-</html>
-
-</body>
-=======
 <?php include '../views/partials/dash-head.php'; ?>
 
   <body>
@@ -183,7 +113,7 @@ if (!empty($_GET))
               <div class="col-lg-12">
                   <div class="form-panel" id="changePass">
                       <h4 class="mb"><i class="fa fa-angle-right"></i>Change Your Password</h4>
-                      <form class="form-horizontal style-form" method="POST" action="ads.edit.php">
+                      <form class="form-horizontal style-form" method="POST" action="users.edit.php">
 
 
                           <div class="form-group">
@@ -213,23 +143,22 @@ if (!empty($_GET))
                               </div>
                           </div>                                                                                                     
                       </form>
-                      <div id = "errorReturn">
-                          <? if (!empty($errors))
-                          foreach ($errors as $error):
-                           echo "$error" . PHP_EOL;?>
-                           <br> 
-                          <? endforeach ?>
-                      </div>
+                <? if (!empty($errors)): ?>
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<? foreach ($errors as $error): ?>
+						 <? echo "$error" . PHP_EOL; ?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				 		 <br> 
+                  	</div>
+                <? endforeach; endif; ?>
                   </div>
               </div><!-- col-lg-12-->       
             </div><!-- /row -->
-
-		</section><! --/wrapper -->
+		</section>
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->
 <?php include '../views/partials/dash-footer.php'; ?>
 
   </body>
->>>>>>> 38f103cd8b1a5fe21c947b802af31b136baa9252
 </html>

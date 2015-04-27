@@ -2,7 +2,6 @@
 <!DOCTYPE HTML>
 <?php 
 require '../bootstrap.php';
-require '../db_connect.php'; 
  ?>
 <html>
 	<head>

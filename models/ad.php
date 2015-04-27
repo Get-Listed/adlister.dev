@@ -6,7 +6,7 @@ Class Ad extends Model
 {
 	protected static $table = 'posts'; 
 
-	protected function insert()
+	public function insert()
 	{
 		$query = '
 		INSERT INTO posts (user_id, item, price, location, date, category, duration, image, contactInfo, description)

@@ -1,5 +1,5 @@
 <?php
-if (!empty($_POST))
+if (Input::has('signup'))
 {
 	$errors = [];
 	if (!empty($_POST['username']) && !empty($_POST['enterPass']) && !empty($_POST['confirmPass']) && !empty($_POST['email']))
@@ -32,7 +32,7 @@ if (!empty($_POST))
     			}
 	
 				$newUser->save();
-				header("Location:auth.login.php");
+				header("Location:index.php");
 				die();
 	
 			} else {
@@ -61,7 +61,7 @@ if (!empty($_POST))
 	        <h4 class="modal-title" id="myModalLabel">Get Started With Get Listed</h4>
 	      </div>
 	      <div class="modal-body">
-	        	<form action "login.php" method="POST">
+	        	<form action "index.php" method="POST">
 					<input type='text' name='username' placeholder='Select a Username'>
 					<br>
 					<input type='text' name='enterPass' placeholder='Select a Password'>
@@ -71,7 +71,16 @@ if (!empty($_POST))
 					<input type='text' name='email' placeholder='Enter your Email'>
 	      </div>
 	      <div class="modal-footer">
-	        		<input type="submit" class="button special">
+	        		<input type="submit" class="button special" name="signup">
+
+			<? if (!empty($errors)): ?>
+				<div class="alert alert-danger alert-dismissible" role="alert">
+				<? foreach ($errors as $error): ?>
+					 <? echo "$error" . PHP_EOL; ?>
+					 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			 		 <br> 
+          		</div> 
+          	<? endforeach; endif; ?>
 	        	</form>
 	      </div>
 	    </div>
@@ -80,10 +89,4 @@ if (!empty($_POST))
 		
 <!--  //** Echo errors -->
 
-<div id = "errorReturn">
-		<? if (!empty($errors))
-		foreach ($errors as $error):
-		 echo "$error" . PHP_EOL;?>
-		 <br> 
-	<? endforeach ?>
 

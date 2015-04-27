@@ -7,8 +7,8 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Marcel Newman</h5>
+              	  <p class="centered"><a href="profile.html"><img src="<?php echo $_SESSION['user_image']; ?>" class="img-circle" width="60"></a></p>
+              	  <h5 class="centered"><?php echo $_SESSION['user_name']; ?></h5>
               	  	
                   <li class="sub-menu">
                       <a href="javascript:;" >
@@ -30,7 +30,12 @@
                           <li class="active"><a  href="ads.create.php">Create Ad</a></li>
                       </ul>
                   </li>
-
+                  <li class="sub-menu">
+                    <a href="ad-show.php">
+                        <i class="fa fa-buysellads"></i>
+                        <span>View All Ad's</span>
+                    </a>
+                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>

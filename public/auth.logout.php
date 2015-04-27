@@ -2,8 +2,6 @@
 
 require_once '../bootstrap.php';
 
-session_start();
-
 // Unset all of the session variables.
 $_SESSION = array();
 
@@ -19,6 +17,5 @@ if (ini_get("session.use_cookies")) {
 
 // Finally, destroy the session.
 session_destroy();
-header("Location: login.php");
+header("Location: index.php");
 exit();
-<?php

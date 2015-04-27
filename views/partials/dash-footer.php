@@ -1,7 +1,7 @@
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-              J.D. and Max The Monkey 2015
+              J.D. and Max 2015
               <a href="blank.html#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>
@@ -18,7 +18,7 @@
     <script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="js/jquery.scrollTo.min.js"></script>
     <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-
+    <script src="js/ad-edit.js" type="text/javascript"></script>
 
     <!--common script for all pages-->
     <script src="js/common-scripts.js"></script>
