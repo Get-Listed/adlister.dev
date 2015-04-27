@@ -9,10 +9,12 @@
 
     <title>Edit</title>
 
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <!--external css-->
-    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
         
     <!-- Custom styles for this template -->
     <link href="css/dash-style.css" rel="stylesheet">
