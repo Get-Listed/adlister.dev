@@ -1,7 +1,7 @@
 <?php 
 require '../bootstrap.php';
 
-$showAds = Ad::all();
+$showAds = Model::all();
  ?>
 <!DOCTYPE HTML>
 
@@ -71,12 +71,11 @@ $showAds = Ad::all();
 			</div>
 
 			<div id="footer">
-				<div class="left">lorem ipsum dolor</a>.lorem ipsum<br />
-					dolor.</p>
+				<div class="left">Get Listed 2015 &copy;</a><br /></p>
 				</div>
 				<div class="right">
 					<ul class="copyright">
-						<li>&copy; Max the Monkey and J.D. Design and Development 2015</li><li></a></li>
+						<li>&copy; Max and J.D. Design and Development 2015</li><li></a></li>
 					</ul>
 				</div>
 			</div>

@@ -8,12 +8,12 @@ session_start();
 
 $errors = [];
 
- if (!isset($_POST))
+ if (Input::has('insert'))
  	{
  		$newAd = new Ad();
 
  		try {
- 			$newAd->user_id =Input::$_SESSION('user_id');
+ 			$newAd->user_id = $_SESSION['user_id'];
  		} catch (Exception $e) {
 	    	$errors[] = $e->getMessage();
 		}
@@ -179,17 +179,19 @@ $errors = [];
                           <div class="form-group">
                               
                               <div class="col-sm-10">
-                                  <button type="submit" class="btn btn-theme">Insert Post</button>
+                                  <button type="submit" class="btn btn-theme" name="insert">Insert Post</button>
                               </div>
                           </div>                                                                                                     
                       </form>
 
-						<div id = "errorReturn">
-							<? foreach ($errors as $error):
-							 	echo "$error" . PHP_EOL;?>
-							 	<br> 
-							<? endforeach?>
-						</div>
+                <? if (!empty($errors)): ?>
+                    <? foreach ($errors as $error): ?>
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                    <? echo "$error" . PHP_EOL; ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <br> 
+                  </div>
+                <? endforeach; endif; ?>
 
                   </div>
               </div><!-- col-lg-12-->       
