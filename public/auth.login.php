@@ -1,35 +1,61 @@
 <?php
 
+require_once '../bootstrap.php';
 /*** begin our session ***/
 session_start();
 
-    /*** if we are here the data is valid and we can insert it into database ***/
-    if (!empty(Input::get('username')) && !empty(Input::get('password'))) {
 
-		$stmt = $dbc->prepare("SELECT username,password FROM users WHERE username = :username AND password = :password");
-		$stmt->bindValue(':username',Input::get('username'),PDO::PARAM_STR);
-		$stmt->bindValue(':password',Input::get('password'),PDO::PARAM_STR);
-		$stmt->execute();
+if (isset($_SESSION['user_id'])) {
+	header('Location: ads.edit.php');
+}
+if (Input::has('login'))
+{
+	$errors = [];
+		$nameAttempt = User::findByUsername($_POST['username']);
+		$passwordAttempt = User::findByPassword($_POST['password']);
+	
+	if (!empty($_POST['username']) && !empty($_POST['password']))
+	{
 
-		$output = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$result = $stmt->fetchColumn();
-        /*** if we have no result then fail boat ***/
-        if($result == false)
-        {
-                $message = 'Login Failed';
-        }
-        /*** if we do have a result, all is well ***/
-       else
-        {
-                /*** set the session user_id variable ***/
-                $_SESSION['user_id'] = $output;
 
-                /*** tell the user we are logged in ***/
-                $message = 'You are now logged in';
-                header("Location: users.edit.php");
-                die();
-        }
+			if (!$nameAttempt && !$passwordAttempt)
+			{
+				$signIn = new User();
+				
+				try {
+					$signIn->username = Input::getString('username');
+				} catch (Exception $e) {
+		    		$errors[] = $e->getMessage();
+				}
+	
+				try {
+				$signIn->password = Input::getString('password');
+				} catch (Exception $e) {
+		    		$errors[] = $e->getMessage();
+				}
+			} else {
+				$errors[] = "Your username or email is not valid";
+			}
+			
+	} else {
+		$errors[] = "All fields required";
+	}
+	if ($nameAttempt && $passwordAttempt)
+	 {
+	 	$name = User::sessionName(Input::get('username'));
+		$_SESSION['user_name'] = $name;
+
+		$id = User::sessionId(Input::get('username'));
+		$_SESSION['user_id'] = $id;
+
+		$image = User::sessionImage(Input::get('username'));
+		$_SESSION['user_image'] = $image;
+        header("Location: users.edit.php");
+        die();
+
     }
+}
+    
 ?>
 	<!-- Sign In Modal -->
 	<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -42,14 +68,22 @@ session_start();
 	      </div>
 	      <div class="modal-body">
 	  
-			<form method="POST">
+			<form method="POST" action="index.php">
 		        <input type="text" name="username" placeholder="Username">
 		        <br>
-		        <input type="password" name="password"  placeholder="Password">  	  				   
+		        <input type="password" name="password"  placeholder="Password">  
 	      </div>
 	      <div class="modal-footer">
-	       		<input type="submit" class="button special">
-			</form>  
+	       		<input type="submit" class="button special" name="login">
+			</form> 
+			<? if (!empty($errors)): ?>
+				<? foreach ($errors as $error): ?>
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					 <? echo "$error" . PHP_EOL; ?>
+					 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			 		 <br> 
+          		</div> 
+          	<? endforeach; endif; ?>
 	      </div>
 	    </div>
 	  </div>

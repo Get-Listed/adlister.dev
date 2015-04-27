@@ -126,5 +126,58 @@ class User extends Model
         
 	}
 
+    public static function findByPassword($passwordAttempt)
+    {
+        self::dbConnect();
 
+        $stmt = self::$dbc->prepare('SELECT * FROM users WHERE password = :password');
+        $stmt->bindValue(':password', $passwordAttempt, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $instance = null;
+        if ($result)
+        {
+            $instance = new static;
+            $instance->attributes = $result;
+        }
+        return $instance;
+        
+    }
+
+    public static function sessionName($name)
+    {
+        self::dbConnect();
+        $stmt = self::$dbc->prepare('SELECT username FROM users WHERE username = :username');
+        $stmt->bindValue(':username',$name,PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result[0]['username'];
+        
+    }
+    
+        public static function sessionId($id)
+    {
+        self::dbConnect();
+        $stmt = self::$dbc->prepare('SELECT user_id FROM users WHERE username = :username');
+        $stmt->bindValue(':username',$id,PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result[0]['user_id'];
+        
+    }
+
+    public static function sessionImage($id)
+    {
+        self::dbConnect();
+        $stmt = self::$dbc->prepare('SELECT user_image FROM users WHERE username = :username');
+        $stmt->bindValue(':username',$id,PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result[0]['user_image'];
+        
+    }  
 }
